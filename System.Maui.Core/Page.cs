@@ -11,7 +11,6 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_PageRenderer))]
 	public class Page : VisualElement, ILayout, IPageController, IElementConfiguration<Page>, IPaddingElement
 	{
 		public const string BusySetSignalName = "Xamarin.BusySet";
@@ -171,6 +170,8 @@ namespace System.Maui
 
 		internal override ReadOnlyCollection<Element> LogicalChildrenInternal =>
 			_logicalChildren ?? (_logicalChildren = new ReadOnlyCollection<Element>(InternalChildren));
+
+		IList<IView> ILayout.Children => InternalChildren.OfType<IView>().ToList();
 
 		public event EventHandler LayoutChanged;
 

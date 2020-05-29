@@ -6,7 +6,6 @@ using System.Maui.Platform;
 namespace System.Maui
 {
 	[ContentProperty("Content")]
-	[RenderWith(typeof(_SwipeViewRenderer))]
 	public class SwipeView : ContentView, IElementConfiguration<SwipeView>, ISwipeViewController
 	{
 		readonly Lazy<PlatformConfigurationRegistry<SwipeView>> _platformConfigurationRegistry;

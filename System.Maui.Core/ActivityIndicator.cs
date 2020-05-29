@@ -3,8 +3,7 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_ActivityIndicatorRenderer))]
-	public class ActivityIndicator : View, IColorElement, IElementConfiguration<ActivityIndicator>
+	public class ActivityIndicator : View, IActivityIndicator, IColorElement, IElementConfiguration<ActivityIndicator>
 	{
 		public static readonly BindableProperty IsRunningProperty = BindableProperty.Create("IsRunning", typeof(bool), typeof(ActivityIndicator), default(bool));
 

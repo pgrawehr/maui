@@ -10,7 +10,6 @@ using System.Collections.ObjectModel;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_CarouselViewRenderer))]
 	public class CarouselView : ItemsView
 	{
 		public const string CurrentItemVisualState = "CurrentItem";

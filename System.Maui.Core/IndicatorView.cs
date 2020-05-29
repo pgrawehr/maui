@@ -6,7 +6,6 @@ using System.Maui.Platform;
 namespace System.Maui
 {
 	[ContentProperty(nameof(IndicatorLayout))]
-	[RenderWith(typeof(_IndicatorViewRenderer))]
 	public class IndicatorView : TemplatedView
 	{
 		const int DefaultPadding = 4;

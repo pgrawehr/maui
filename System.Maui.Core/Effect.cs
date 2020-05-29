@@ -21,7 +21,7 @@ namespace System.Maui
 		public static Effect Resolve(string name)
 		{
 			Effect result = null;
-			if (Internals.Registrar.Effects.TryGetValue(name, out Type effectType))
+			if (Registrar.Effects.TryGetValue(name, out Type effectType))
 			{
 				result = (Effect)DependencyResolver.ResolveOrCreate(effectType);
 			}

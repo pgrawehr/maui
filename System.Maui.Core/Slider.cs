@@ -6,8 +6,7 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_SliderRenderer))]
-	public class Slider : View, ISliderController, IElementConfiguration<Slider>
+	public class Slider : View, ISlider, ISliderController, IElementConfiguration<Slider>
 	{
 		public static readonly BindableProperty MinimumProperty = BindableProperty.Create("Minimum", typeof(double), typeof(Slider), 0d, validateValue: (bindable, value) =>
 		{
@@ -170,5 +169,8 @@ namespace System.Maui
 		{
 			return _platformConfigurationRegistry.Value.On<T>();
 		}
+
+		void ISlider.DragStarted() => ((ISliderController)this).SendDragStarted();
+		void ISlider.DragCompleted() => ((ISliderController)this).SendDragCompleted();
 	}
 }

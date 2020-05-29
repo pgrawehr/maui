@@ -4,10 +4,11 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Maui.Internals;
+using System.Maui.Shapes;
 
 namespace System.Maui
 {
-	public class View : VisualElement, IViewController, IGestureController, IGestureRecognizers
+	public class View : VisualElement, IView, IClipShapeView, IViewController, IGestureController, IGestureRecognizers
 	{
 		protected internal IGestureController GestureController => this;
 
@@ -15,6 +16,9 @@ namespace System.Maui
 			BindableProperty.Create(nameof(VerticalOptions), typeof(LayoutOptions), typeof(View), LayoutOptions.Fill,
 									propertyChanged: (bindable, oldvalue, newvalue) =>
 									((View)bindable).InvalidateMeasureInternal(InvalidationTrigger.VerticalOptionsChanged));
+
+		public static readonly BindableProperty ClipShapeProperty =
+			BindableProperty.Create(nameof(IClipShapeView.ClipShape), typeof(IShape), typeof(View));
 
 		public static readonly BindableProperty HorizontalOptionsProperty =
 			BindableProperty.Create(nameof(HorizontalOptions), typeof(LayoutOptions), typeof(View), LayoutOptions.Fill,
@@ -132,6 +136,12 @@ namespace System.Maui
 		public virtual IList<GestureElement> GetChildElements(Point point)
 		{
 			return null;
+		}
+
+		public IShape ClipShape
+		{
+			get => (IShape)GetValue(ClipShapeProperty);
+			set => SetValue(ClipShapeProperty, value);
 		}
 
 		public LayoutOptions HorizontalOptions

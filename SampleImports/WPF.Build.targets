@@ -1,7 +1,0 @@
-<Project>
-  <ItemGroup>
-    <ProjectReference Include="$(XamarinFormsSource)System.Maui.Platform.WPF\System.Maui.Platform.WPF.csproj">
-      <Name>System.Maui.Platform.WPF</Name>
-    </ProjectReference>
-  </ItemGroup>
-</Project>

@@ -35,7 +35,7 @@ namespace System.Maui.Internals
 
 				var fontStream = GetEmbeddedResourceStream(foundFont.assembly, foundFont.attribute.FontFileName);
 
-				var type = Registrar.Registered.GetHandlerType(typeof(EmbeddedFont));
+				var type = Registrar.Registered.GetHandler(typeof(EmbeddedFont));
 				var fontHandler = (IEmbeddedFontLoader)Activator.CreateInstance(type);
 				var result = fontHandler.LoadFont(new EmbeddedFont { FontName = foundFont.attribute.FontFileName, ResourceStream = fontStream });
 				return fontLookupCache[font] = result;

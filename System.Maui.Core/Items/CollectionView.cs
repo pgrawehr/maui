@@ -9,7 +9,6 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_CollectionViewRenderer))]
 	public class CollectionView : GroupableItemsView
 	{
 	}

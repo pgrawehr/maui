@@ -8,7 +8,6 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_ImageButtonRenderer))]
 	public class ImageButton : View, IImageController, IElementConfiguration<ImageButton>, IBorderElement, IButtonController, IViewController, IPaddingElement, IButtonElement, IImageElement
 	{
 		const int DefaultCornerRadius = -1;

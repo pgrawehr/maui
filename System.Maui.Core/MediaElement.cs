@@ -7,7 +7,6 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_MediaElementRenderer))]
 	public sealed class MediaElement : View, IMediaElementController
 	{
 		[EditorBrowsable(EditorBrowsableState.Never)]

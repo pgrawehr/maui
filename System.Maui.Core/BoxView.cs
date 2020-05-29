@@ -4,7 +4,6 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_BoxViewRenderer))]
 	public class BoxView : View, IColorElement, ICornerElement, IElementConfiguration<BoxView>
 	{
 		public static readonly BindableProperty ColorProperty = ColorElement.ColorProperty;

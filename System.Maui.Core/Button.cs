@@ -8,8 +8,7 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_ButtonRenderer))]
-	public class Button : View, IFontElement, ITextElement, IBorderElement, IButtonController, IElementConfiguration<Button>, IPaddingElement, IImageController, IViewController, IButtonElement, IImageElement
+	public class Button : View, IButton, IFontElement, ITextElement, IBorderElement, IButtonController, IElementConfiguration<Button>, IPaddingElement, IImageController, IViewController, IButtonElement, IImageElement
 	{
 		const int DefaultBorderRadius = 5;
 		const double DefaultSpacing = 10;
@@ -107,6 +106,12 @@ namespace System.Maui
 			get { return (double)GetValue(BorderWidthProperty); }
 			set { SetValue(BorderWidthProperty, value); }
 		}
+
+		void IButton.Clicked() => this.SendClicked();
+
+		TextType IText.TextType => TextType.Text;
+
+		Color IText.Color => TextColor;
 
 		public ButtonContentLayout ContentLayout
 		{

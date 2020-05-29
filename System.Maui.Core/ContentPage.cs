@@ -1,7 +1,7 @@
 namespace System.Maui
 {
 	[ContentProperty("Content")]
-	public class ContentPage : TemplatedPage
+	public class ContentPage : TemplatedPage, IPage
 	{
 		public static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(ContentPage), null, propertyChanged: TemplateUtilities.OnContentChanged);
 
@@ -10,6 +10,8 @@ namespace System.Maui
 			get { return (View)GetValue(ContentProperty); }
 			set { SetValue(ContentProperty, value); }
 		}
+
+		object IPage.Content => Content;
 
 		protected override void OnBindingContextChanged()
 		{

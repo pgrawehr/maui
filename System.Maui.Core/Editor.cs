@@ -5,8 +5,7 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_EditorRenderer))]
-	public class Editor : InputView, IEditorController, IFontElement, IElementConfiguration<Editor>
+	public class Editor : InputView, IEditor, IEditorController, IFontElement, IElementConfiguration<Editor>
 	{
 		public new static readonly BindableProperty TextProperty = InputView.TextProperty;
 
@@ -118,5 +117,9 @@ namespace System.Maui
 				InvalidateMeasure();
 			}
 		}
+
+		void IEditor.Completed() => SendCompleted();
+		TextType IText.TextType => TextType.Text;
+		Color IText.Color => TextColor;
 	}
 }

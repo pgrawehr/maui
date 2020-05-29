@@ -10,7 +10,7 @@ namespace System.Maui
 		public IndicatorStackLayout(IndicatorView indicatorView)
 		{
 			_indicatorView = indicatorView;
-			Orientation = StackOrientation.Horizontal;
+			Orientation = Orientation.Horizontal;
 			_indicatorView.PropertyChanged += _indicatorViewPropertyChanged;
 		}
 

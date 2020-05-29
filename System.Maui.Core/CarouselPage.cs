@@ -3,7 +3,6 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_CarouselPageRenderer))]
 	public class CarouselPage : MultiPage<ContentPage>, IElementConfiguration<CarouselPage>
 	{
 		readonly Lazy<PlatformConfigurationRegistry<CarouselPage>> _platformConfigurationRegistry;

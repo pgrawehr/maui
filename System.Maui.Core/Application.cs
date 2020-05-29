@@ -28,14 +28,13 @@ namespace System.Maui
 
 		public Application()
 		{
-			var f = false;
-			if (f)
-				Loader.Load();
+			System.Maui.Core.Platform.Init();
 
 			SetCurrentApplication(this);
 			NavigationProxy = new NavigationImpl(this);
-			SystemResources = DependencyService.Get<ISystemResourcesProvider>().GetSystemResources();
-			SystemResources.ValuesChanged += OnParentResourcesChanged;
+			//TODO: Bring this back
+			//SystemResources = DependencyService.Get<ISystemResourcesProvider>().GetSystemResources();
+			//SystemResources.ValuesChanged += OnParentResourcesChanged;
 			_platformConfigurationRegistry = new Lazy<PlatformConfigurationRegistry<Application>>(() => new PlatformConfigurationRegistry<Application>(this));
 		}
 

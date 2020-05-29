@@ -7,7 +7,6 @@ using System.Maui.Platform;
 namespace System.Maui
 {
 	[ContentProperty("Content")]
-	[RenderWith(typeof(_ScrollViewRenderer))]
 	public class ScrollView : Layout, IScrollViewController, IElementConfiguration<ScrollView>, IFlowDirectionController
 	{
 		#region IScrollViewController

@@ -11,8 +11,7 @@ using System.Maui.Platform;
 namespace System.Maui
 {
 	[ContentProperty("Text")]
-	[RenderWith(typeof(_LabelRenderer))]
-	public class Label : View, IFontElement, ITextElement, ITextAlignmentElement, ILineHeightElement, IElementConfiguration<Label>, IDecorableTextElement, IPaddingElement
+	public class Label : View, ILabel, IFontElement, ITextElement, ITextAlignmentElement, ILineHeightElement, IElementConfiguration<Label>, IDecorableTextElement, IPaddingElement
 	{
 		public static readonly BindableProperty HorizontalTextAlignmentProperty = TextAlignmentElement.HorizontalTextAlignmentProperty;
 
@@ -413,5 +412,7 @@ namespace System.Maui
 		{
 			InvalidateMeasureInternal(InvalidationTrigger.MeasureChanged);
 		}
+
+		Color IText.Color => TextColor;
 	}
 }

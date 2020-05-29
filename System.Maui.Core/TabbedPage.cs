@@ -3,7 +3,6 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_TabbedPageRenderer))]
 	public class TabbedPage : MultiPage<Page>, IBarElement, IElementConfiguration<TabbedPage>
 	{
 		public static readonly BindableProperty BarBackgroundColorProperty = BarElement.BarBackgroundColorProperty;

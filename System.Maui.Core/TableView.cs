@@ -8,7 +8,6 @@ using System.Maui.Internals;
 namespace System.Maui
 {
 	[ContentProperty("Root")]
-	[RenderWith(typeof(_TableViewRenderer))]
 	public class TableView : View, ITableViewController, IElementConfiguration<TableView>
 	{
 		public static readonly BindableProperty RowHeightProperty = BindableProperty.Create("RowHeight", typeof(int), typeof(TableView), -1);

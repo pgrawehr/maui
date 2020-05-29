@@ -100,13 +100,14 @@ namespace System.Maui
 				if (s_initialized)
 					return;
 
-				Assembly[] assemblies = Device.GetAssemblies();
-				if (Internals.Registrar.ExtraAssemblies != null)
-				{
-					assemblies = assemblies.Union(Internals.Registrar.ExtraAssemblies).ToArray();
-				}
+				//TODO: Bring this back!
+				//Assembly[] assemblies = Device.GetAssemblies();
+				//if (Internals.Registrar.ExtraAssemblies != null)
+				//{
+				//	assemblies = assemblies.Union(Internals.Registrar.ExtraAssemblies).ToArray();
+				//}
 
-				Initialize(assemblies);
+				//Initialize(assemblies);
 			}
 		}
 

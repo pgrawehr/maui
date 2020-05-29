@@ -6,8 +6,7 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_ProgressBarRenderer))]
-	public class ProgressBar : View, IElementConfiguration<ProgressBar>
+	public class ProgressBar : View, IProgress, IElementConfiguration<ProgressBar>
 	{
 		public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create(nameof(ProgressColor), typeof(Color), typeof(ProgressBar), Color.Default);
 

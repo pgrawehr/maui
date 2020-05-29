@@ -1,9 +1,9 @@
-using System;
+//using System;
 
-namespace System.Maui
-{
-	public interface ILayout
-	{
-		event EventHandler LayoutChanged;
-	}
-}
+//namespace System.Maui.Internals
+//{
+//	public interface ILayout
+//	{
+//		event EventHandler LayoutChanged;
+//	}
+//}

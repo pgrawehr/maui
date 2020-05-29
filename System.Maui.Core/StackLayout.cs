@@ -4,9 +4,9 @@ using System.Maui.Internals;
 
 namespace System.Maui
 {
-	public class StackLayout : Layout<View>, IElementConfiguration<StackLayout>
+	public class StackLayout : Layout<View>, IStackLayout, IElementConfiguration<StackLayout>
 	{
-		public static readonly BindableProperty OrientationProperty = BindableProperty.Create(nameof(Orientation), typeof(StackOrientation), typeof(StackLayout), StackOrientation.Vertical,
+		public static readonly BindableProperty OrientationProperty = BindableProperty.Create(nameof(Orientation), typeof(Orientation), typeof(StackLayout), Orientation.Vertical,
 			propertyChanged: (bindable, oldvalue, newvalue) => ((StackLayout)bindable).InvalidateLayout());
 
 		public static readonly BindableProperty SpacingProperty = BindableProperty.Create(nameof(Spacing), typeof(double), typeof(StackLayout), 6d,
@@ -21,14 +21,16 @@ namespace System.Maui
 				new PlatformConfigurationRegistry<StackLayout>(this));
 		}
 
+		Orientation IStackLayout.Orientation => this.Orientation;
+
 		public IPlatformElementConfiguration<T, StackLayout> On<T>() where T : IConfigPlatform
 		{
 			return _platformConfigurationRegistry.Value.On<T>();
 		}
 
-		public StackOrientation Orientation
+		public Orientation Orientation
 		{
-			get { return (StackOrientation)GetValue(OrientationProperty); }
+			get { return (Orientation)GetValue(OrientationProperty); }
 			set { SetValue(OrientationProperty, value); }
 		}
 
@@ -48,7 +50,7 @@ namespace System.Maui
 			LayoutInformation layoutInformationCopy = _layoutInformation;
 			if (width == layoutInformationCopy.Constraint.Width && height == layoutInformationCopy.Constraint.Height)
 			{
-				StackOrientation orientation = Orientation;
+				Orientation orientation = Orientation;
 
 				AlignOffAxis(layoutInformationCopy, orientation, width, height);
 				ProcessExpanders(layoutInformationCopy, orientation, x, y, width, height);
@@ -93,13 +95,13 @@ namespace System.Maui
 			base.InvalidateMeasureInternal(trigger);
 		}
 
-		void AlignOffAxis(LayoutInformation layout, StackOrientation orientation, double widthConstraint, double heightConstraint)
+		void AlignOffAxis(LayoutInformation layout, Orientation orientation, double widthConstraint, double heightConstraint)
 		{
 			for (var i = 0; i < layout.Plots?.Length; i++)
 			{
 				if (!((View)LogicalChildrenInternal[i]).IsVisible)
 					continue;
-				if (orientation == StackOrientation.Vertical)
+				if (orientation == Orientation.Vertical)
 				{
 					layout.Plots[i].Width = widthConstraint;
 				}
@@ -118,7 +120,7 @@ namespace System.Maui
 			layout.Plots = new Rectangle[Children.Count];
 			layout.Requests = new SizeRequest[Children.Count];
 
-			StackOrientation orientation = Orientation;
+			Orientation orientation = Orientation;
 
 			CalculateNaiveLayout(layout, orientation, x, y, widthConstraint, heightConstraint);
 			CompressNaiveLayout(layout, orientation, widthConstraint, heightConstraint);
@@ -130,7 +132,7 @@ namespace System.Maui
 			}
 		}
 
-		void CalculateNaiveLayout(LayoutInformation layout, StackOrientation orientation, double x, double y, double widthConstraint, double heightConstraint)
+		void CalculateNaiveLayout(LayoutInformation layout, Orientation orientation, double x, double y, double widthConstraint, double heightConstraint)
 		{
 			layout.CompressionSpace = 0;
 
@@ -141,7 +143,7 @@ namespace System.Maui
 			double minimumWidth = 0;
 			double minimumHeight = 0;
 			double spacing = Spacing;
-			if (orientation == StackOrientation.Vertical)
+			if (orientation == Orientation.Vertical)
 			{
 				View expander = null;
 				for (var i = 0; i < LogicalChildrenInternal.Count; i++)
@@ -274,12 +276,12 @@ namespace System.Maui
 			}
 		}
 
-		void CompressNaiveLayout(LayoutInformation layout, StackOrientation orientation, double widthConstraint, double heightConstraint)
+		void CompressNaiveLayout(LayoutInformation layout, Orientation orientation, double widthConstraint, double heightConstraint)
 		{
 			if (layout.CompressionSpace <= 0)
 				return;
 
-			if (orientation == StackOrientation.Vertical)
+			if (orientation == Orientation.Vertical)
 			{
 				CompressVerticalLayout(layout, widthConstraint, heightConstraint);
 			}
@@ -348,7 +350,7 @@ namespace System.Maui
 
 		void ComputeConstraintForView(View view, bool isOnlyExpander)
 		{
-			if (Orientation == StackOrientation.Horizontal)
+			if (Orientation == Orientation.Horizontal)
 			{
 				if ((Constraint & LayoutConstraint.VerticallyFixed) != 0 && view.VerticalOptions.Alignment == LayoutAlignment.Fill)
 				{
@@ -397,12 +399,12 @@ namespace System.Maui
 			return false;
 		}
 
-		void ProcessExpanders(LayoutInformation layout, StackOrientation orientation, double x, double y, double widthConstraint, double heightConstraint)
+		void ProcessExpanders(LayoutInformation layout, Orientation orientation, double x, double y, double widthConstraint, double heightConstraint)
 		{
 			if (layout.Expanders <= 0)
 				return;
 
-			if (orientation == StackOrientation.Vertical)
+			if (orientation == Orientation.Vertical)
 			{
 				double extraSpace = heightConstraint - layout.Bounds.Height;
 				if (extraSpace <= 0)

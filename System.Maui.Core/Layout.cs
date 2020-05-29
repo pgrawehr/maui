@@ -52,6 +52,8 @@ namespace System.Maui
 
 	public abstract class Layout : View, ILayout, ILayoutController, IPaddingElement
 	{
+		IList<IView> System.Maui.ILayout.Children => this.Children.OfType<IView>().ToList();
+
 		public static readonly BindableProperty IsClippedToBoundsProperty = BindableProperty.Create("IsClippedToBounds", typeof(bool), typeof(Layout), false);
 
 		public static readonly BindableProperty CascadeInputTransparentProperty = BindableProperty.Create(

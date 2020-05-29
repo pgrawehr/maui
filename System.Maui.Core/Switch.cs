@@ -3,8 +3,7 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_SwitchRenderer))]
-	public class Switch : View, IElementConfiguration<Switch>
+	public class Switch : View, ISwitch,  IElementConfiguration<Switch>
 	{
 		public const string SwitchOnVisualState = "On";
 		public const string SwitchOffVisualState = "Off";
@@ -58,5 +57,6 @@ namespace System.Maui
 		{
 			return _platformConfigurationRegistry.Value.On<T>();
 		}
+		bool ISwitch.IsOn { get => IsToggled; set => IsToggled = value; }
 	}
 }

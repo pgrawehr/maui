@@ -20,9 +20,11 @@ namespace System.Maui
 			foreach (var assembly in assemblies)
 				Register(assembly, mappings);
 
-			if (Internals.Registrar.ExtraAssemblies != null)
-				foreach (var assembly in Internals.Registrar.ExtraAssemblies)
-					Register(assembly, mappings);
+
+			//TODO: Bring this back:
+			//if (Internals.Registrar.ExtraAssemblies != null)
+			//	foreach (var assembly in Internals.Registrar.ExtraAssemblies)
+			//		Register(assembly, mappings);
 
 
 			// Check for visual assembly attributes	after scanning for IVisual Types
@@ -30,9 +32,10 @@ namespace System.Maui
 			foreach (var assembly in assemblies)
 				RegisterFromAttributes(assembly, mappings);
 
-			if (Internals.Registrar.ExtraAssemblies != null)
-				foreach (var assembly in Internals.Registrar.ExtraAssemblies)
-					RegisterFromAttributes(assembly, mappings);
+			//TODO: Bring this back:
+			//if (Internals.Registrar.ExtraAssemblies != null)
+			//	foreach (var assembly in Internals.Registrar.ExtraAssemblies)
+			//		RegisterFromAttributes(assembly, mappings);
 
 			_visualTypeMappings = mappings;
 		}

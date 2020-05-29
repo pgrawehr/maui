@@ -10,16 +10,18 @@ namespace System.Maui
 	{
 		BindableProperty IStylable.GetProperty(string key, bool inheriting)
 		{
-			if (!Internals.Registrar.StyleProperties.TryGetValue(key, out var attrList))
-				return null;
+			//TODO: Bring Back
+			//if (!Registrar.StyleProperties.TryGetValue(key, out var attrList))
+			return null;
 
 			StylePropertyAttribute styleAttribute = null;
-			for (int i = 0; i < attrList.Count; i++) {
-				styleAttribute = attrList[i];
-				if (styleAttribute.TargetType.GetTypeInfo().IsAssignableFrom(GetType().GetTypeInfo()))
-					break;
-				styleAttribute = null;
-			}
+			//TODO: Bring Back
+			//for (int i = 0; i < attrList.Count; i++) {
+			//	styleAttribute = attrList[i];
+			//	if (styleAttribute.TargetType.GetTypeInfo().IsAssignableFrom(GetType().GetTypeInfo()))
+			//		break;
+			//	styleAttribute = null;
+			//}
 
 			if (styleAttribute == null)
 				return null;

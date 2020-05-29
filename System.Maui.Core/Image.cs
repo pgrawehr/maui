@@ -7,7 +7,6 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_ImageRenderer))]
 	public class Image : View, IImageController, IElementConfiguration<Image>, IViewController, IImageElement
 	{
 		public static readonly BindableProperty SourceProperty = ImageElement.SourceProperty;

@@ -6,7 +6,7 @@ using System.Maui.Internals;
 
 namespace System.Maui
 {
-	public partial class VisualElement : NavigableElement, IAnimatable, IVisualElementController, IResourcesProvider, IStyleElement, IFlowDirectionController, IPropertyPropagationController, IVisualController, ITabStopElement
+	public partial class VisualElement : NavigableElement, IFrameworkElement, IAnimatable, IVisualElementController, IResourcesProvider, IStyleElement, IFlowDirectionController, IPropertyPropagationController, IVisualController, ITabStopElement
 	{
 		public new static readonly BindableProperty NavigationProperty = NavigableElement.NavigationProperty;
 
@@ -319,6 +319,7 @@ namespace System.Maui
 				Y = value.Y;
 				SetSize(value.Width, value.Height);
 				BatchCommit();
+				OnPropertyChanged(nameof(Frame));
 			}
 		}
 
@@ -1106,5 +1107,70 @@ namespace System.Maui
 
 			}
 		}
+
+
+		#region IContentContainer
+		Rectangle IFrameworkElement.Frame => this.Bounds;
+
+		protected IViewRenderer Renderer { get; set; }
+		IViewRenderer IFrameworkElement.Renderer
+		{
+			get
+			{
+				return Renderer;
+			}
+
+			set
+			{
+				Renderer = value;
+			}
+		}
+
+		protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			base.OnPropertyChanged(propertyName);
+			(Renderer)?.UpdateValue(propertyName);
+		}
+
+		IFrameworkElement IFrameworkElement.Parent => this.Parent as IFrameworkElement;
+
+		SizeRequest desiredSize;
+		SizeRequest IFrameworkElement.DesiredSize => desiredSize;
+		bool isMeasureValid;
+		bool isArrangeValid;
+		bool IFrameworkElement.IsMeasureValid => isMeasureValid;
+
+		bool IFrameworkElement.IsArrangeValid => isArrangeValid;
+
+
+		void IFrameworkElement.Arrange(Rectangle bounds)
+		{
+			if (isArrangeValid)
+				return;
+			isArrangeValid = true;
+			this.Layout(bounds);
+		}
+
+		SizeRequest IFrameworkElement.Measure(double widthConstraint, double heightConstraint)
+		{
+			if (!isMeasureValid)
+				desiredSize = this.Renderer.GetDesiredSize(widthConstraint, heightConstraint);// this.OnMeasure(widthConstraint, heightConstraint);
+			isMeasureValid = true;
+			return desiredSize;
+		}
+
+		void IFrameworkElement.InvalidateMeasure()
+		{
+			isMeasureValid = false;
+			isArrangeValid = false;
+			this.InvalidateMeasure();
+		}
+
+		void IFrameworkElement.InvalidateArrange()
+		{
+			isArrangeValid = false;
+		}
+		#endregion
+
 	}
 }

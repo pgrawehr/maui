@@ -1,8 +1,0 @@
-<Project>
-  <ItemGroup>
-    <ProjectReference Include="..\..\System.Maui.DualScreen\System.Maui.DualScreen.csproj" >
-      <Name>System.Maui.DualScreen</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="..\..\SampleImports\Directory.Build.targets" />
-</Project>

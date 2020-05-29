@@ -1,8 +1,8 @@
-namespace System.Maui
-{
-	public enum TextType
-	{
-		Text,
-		Html
-	}
-}
+//namespace System.Maui
+//{
+//	public enum TextType
+//	{
+//		Text,
+//		Html
+//	}
+//}

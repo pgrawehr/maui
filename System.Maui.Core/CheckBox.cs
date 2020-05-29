@@ -3,8 +3,7 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_CheckBoxRenderer))]
-	public class CheckBox : View, IElementConfiguration<CheckBox>, IBorderElement, IColorElement
+	public class CheckBox : View, ICheckBox, IElementConfiguration<CheckBox>, IBorderElement, IColorElement
 	{
 		readonly Lazy<PlatformConfigurationRegistry<CheckBox>> _platformConfigurationRegistry;
 		public const string IsCheckedVisualState = "IsChecked";

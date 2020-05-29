@@ -6,8 +6,7 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_SearchBarRenderer))]
-	public class SearchBar : InputView, IFontElement, ITextAlignmentElement, ISearchBarController, IElementConfiguration<SearchBar>
+	public class SearchBar : InputView, ISearch, IFontElement, ITextAlignmentElement, ISearchBarController, IElementConfiguration<SearchBar>
 	{
 		public static readonly BindableProperty SearchCommandProperty = BindableProperty.Create("SearchCommand", typeof(ICommand), typeof(SearchBar), null, propertyChanged: OnCommandChanged);
 
@@ -165,6 +164,17 @@ namespace System.Maui
 
 		void ITextAlignmentElement.OnHorizontalTextAlignmentPropertyChanged(TextAlignment oldValue, TextAlignment newValue)
 		{
+		}
+		Color ISearch.CancelColor => CancelButtonColor;
+
+		TextType IText.TextType => TextType.Text;
+
+		Color IText.Color => TextColor;
+		void ISearch.Search() => this.OnSearchButtonPressed();
+
+		void ISearch.Cancel()
+		{
+			//TODO: Make this do something?
 		}
 	}
 }

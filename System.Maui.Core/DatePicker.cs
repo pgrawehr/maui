@@ -4,8 +4,7 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_DatePickerRenderer))]
-	public class DatePicker : View, IFontElement, ITextElement, IElementConfiguration<DatePicker>
+	public class DatePicker : View, IDatePicker, IFontElement, ITextElement, IElementConfiguration<DatePicker>
 	{
 		public static readonly BindableProperty FormatProperty = BindableProperty.Create(nameof(Format), typeof(string), typeof(DatePicker), "d");
 
@@ -92,6 +91,13 @@ namespace System.Maui
 			get { return (string)GetValue(FontFamilyProperty); }
 			set { SetValue(FontFamilyProperty, value); }
 		}
+
+		DateTime IDatePicker.SelectedDate { get => this.Date; set => Date = value; }
+
+		TextType IText.TextType => TextType.Text;
+
+		Color IText.Color => this.TextColor;
+
 
 		[TypeConverter(typeof(FontSizeConverter))]
 		public double FontSize

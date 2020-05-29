@@ -6,7 +6,6 @@ using System.Maui.Platform;
 namespace System.Maui
 {
 	[ContentProperty("Content")]
-	[RenderWith(typeof(_RefreshViewRenderer))]
 	public class RefreshView : ContentView, IElementConfiguration<RefreshView>
 	{
 		readonly Lazy<PlatformConfigurationRegistry<RefreshView>> _platformConfigurationRegistry;

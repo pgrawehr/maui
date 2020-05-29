@@ -6,7 +6,6 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_RadioButtonRenderer))]
 	public class RadioButton : Button, IElementConfiguration<RadioButton>
 	{
 		readonly Lazy<PlatformConfigurationRegistry<RadioButton>> _platformConfigurationRegistry;

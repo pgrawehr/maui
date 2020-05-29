@@ -6,8 +6,7 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_EntryRenderer))]
-	public class Entry : InputView, IFontElement, ITextAlignmentElement, IEntryController, IElementConfiguration<Entry>
+	public class Entry : InputView, ITextInput, IFontElement, ITextAlignmentElement, IEntryController, IElementConfiguration<Entry>
 	{
 		public static readonly BindableProperty ReturnTypeProperty = BindableProperty.Create(nameof(ReturnType), typeof(ReturnType), typeof(Entry), ReturnType.Default);
 
@@ -171,5 +170,9 @@ namespace System.Maui
 		void ITextAlignmentElement.OnHorizontalTextAlignmentPropertyChanged(TextAlignment oldValue, TextAlignment newValue)
 		{
 		}
+
+		TextType IText.TextType => TextType.Text;
+
+		Color IText.Color => TextColor;
 	}
 }

@@ -1,8 +1,8 @@
-namespace System.Maui
-{
-	public enum StackOrientation
-	{
-		Vertical,
-		Horizontal
-	}
-}
+//namespace System.Maui
+//{
+//	public enum StackOrientation
+//	{
+//		Vertical,
+//		Horizontal
+//	}
+//}

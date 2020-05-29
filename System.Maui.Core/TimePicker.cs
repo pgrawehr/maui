@@ -4,8 +4,7 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_TimePickerRenderer))]
-	public class TimePicker : View, IFontElement, ITextElement, IElementConfiguration<TimePicker>
+	public class TimePicker : View, ITimePicker, IFontElement, ITextElement, IElementConfiguration<TimePicker>
 	{
 		public static readonly BindableProperty FormatProperty = BindableProperty.Create(nameof(Format), typeof(string), typeof(TimePicker), "t");
 
@@ -117,5 +116,18 @@ namespace System.Maui
 
 		void ITextElement.OnTextTransformChanged(TextTransform oldValue, TextTransform newValue)
 			=> InvalidateMeasureInternal(InvalidationTrigger.MeasureChanged);
+
+
+
+		TimeSpan ITimePicker.SelectedTime { get => Time; set => Time = value; }
+
+		//TODO: this property doesnt exist
+		string ITimePicker.ClockIdentifier => null;
+
+		string IText.Text => Time.ToString(Format);
+
+		TextType IText.TextType => TextType.Text;
+
+		Color IText.Color => TextColor;
 	}
 }

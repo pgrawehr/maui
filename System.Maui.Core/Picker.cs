@@ -10,8 +10,7 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_PickerRenderer))]
-	public class Picker : View, IFontElement, ITextElement, IElementConfiguration<Picker>
+	public class Picker : View, IPicker, IFontElement, ITextElement, IElementConfiguration<Picker>
 	{
 		public static readonly BindableProperty TextColorProperty = TextElement.TextColorProperty;
 
@@ -303,6 +302,12 @@ namespace System.Maui
 		{
 			InvalidateMeasure();
 		}
+
+		string IText.Text => Title;
+
+		TextType IText.TextType => TextType.Text;
+
+		Color IText.Color => TitleColor;
 
 	}
 }

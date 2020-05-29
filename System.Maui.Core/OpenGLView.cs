@@ -4,7 +4,6 @@ using System.Maui.Platform;
 
 namespace System.Maui
 {
-	[RenderWith(typeof(_OpenGLViewRenderer))]
 	public sealed class OpenGLView : View, IOpenGlViewController, IElementConfiguration<OpenGLView>
 	{
 		#region Statics
