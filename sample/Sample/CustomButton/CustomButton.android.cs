@@ -17,9 +17,7 @@ namespace Sample
 
 		private void CustomButton_Clicked(object sender, EventArgs e)
 		{
-			var nativeView = this.Renderer.NativeView as global::Android.Views.View;
-
-			var dialog = new AlertDialog.Builder(nativeView.Context);
+			var dialog = new AlertDialog.Builder(this.GetContext());
 			AlertDialog alert = dialog.Create();
 			alert.SetTitle("Title");
 			alert.SetMessage("Hello From Android Alert Dialog");
