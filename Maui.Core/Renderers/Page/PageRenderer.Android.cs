@@ -13,8 +13,9 @@ namespace System.Maui.Platform
 		{
 			LayoutInflater inflater = LayoutInflater.FromContext(this.Context);
 			var view = inflater.Inflate(Resource.Layout.content_main, null);
+			var vg = view.FindViewById<ViewGroup>(Resource.Id.contentLayout);
 
-			if(view is ViewGroup vg && base.VirtualView.Content is IFrameworkElement fe)
+			if(base.VirtualView.Content is IFrameworkElement fe)
 			{
 				vg.AddView(fe.ToNative(Context));
 			}

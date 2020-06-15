@@ -62,14 +62,14 @@ namespace Sample
 			_searchBar.SearchCommand = new Command(obj =>
 			{
 #if __IOS__
-						new UIKit.UIAlertView("I m searching!", _searchBar.Text, null, "Ok").Show();
+				new UIKit.UIAlertView("I m searching!", _searchBar.Text, null, "Ok").Show();
 #endif
 			});
 			_searchBar.TextChanged += (sender, args) => { System.Diagnostics.Debug.WriteLine($"Search >>>>>> '{args.OldTextValue}' -> '{args.NewTextValue}'"); };
 			_iswitch.Toggled += (s, e) =>
 			{
 #if __IOS__
-							new UIKit.UIAlertView("I was toggled", e.Value.ToString(), null, "Ok").Show();
+				new UIKit.UIAlertView("I was toggled", e.Value.ToString(), null, "Ok").Show();
 #endif
 			};
 
@@ -113,6 +113,7 @@ namespace Sample
 			(_label = new Label {
 				Text = "At the top", BackgroundColor = Color.Red
 			}),
+			new CustomButton(){ Text = "Custom Button" },
 			new ActivityIndicator
 			{
 				IsRunning = true,
