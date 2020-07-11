@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net47</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <RootNamespace>System.Maui.Xaml.UnitTests</RootNamespace>
     <AssemblyName>System.Maui.Xaml.UnitTests</AssemblyName>
     <WarningLevel>4</WarningLevel>
